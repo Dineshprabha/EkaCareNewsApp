@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,20 +25,22 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             .padding(top = 24.dp)
             .statusBarsPadding()
     ) {
-        
-        Text(text = "News", modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 24.dp),
+
+        Text(
+            text = "News", modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 24.dp),
             fontSize = 18.sp,
             style = MaterialTheme.typography.bodyMedium,
-            color = colorResource(id = R.color.text_title))
+            color = colorResource(id = R.color.text_title)
+        )
 
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun ProvideHomeScreen(){
+fun ProvideHomeScreen() {
     EkaCareNewsAppTheme {
         HomeScreen()
     }
