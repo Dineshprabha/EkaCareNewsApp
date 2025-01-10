@@ -25,11 +25,12 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.dinesh.ekacarenewsapp.R
 import com.dinesh.ekacarenewsapp.domain.model.Article
+import com.dinesh.ekacarenewsapp.domain.model.BaseArticle
 import com.dinesh.ekacarenewsapp.utils.Dimens.ArticleCardSize
 import com.dinesh.ekacarenewsapp.utils.Dimens.ExtraSmallPadding
 
 @Composable
-fun ArticleCard(article: Article, onReadMoreClick: (String) -> Unit) {
+fun ArticleCard(article: BaseArticle, onReadMoreClick: (BaseArticle) -> Unit) {
 
     val context = LocalContext.current
 
@@ -85,7 +86,7 @@ fun ArticleCard(article: Article, onReadMoreClick: (String) -> Unit) {
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                     color = colorResource(id = R.color.purple_700),
                     modifier = Modifier.clickable {
-                        onReadMoreClick(article.url)
+                        onReadMoreClick(article)
                     }
                 )
             }

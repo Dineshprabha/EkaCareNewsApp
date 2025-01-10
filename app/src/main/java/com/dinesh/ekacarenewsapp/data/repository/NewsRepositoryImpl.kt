@@ -4,6 +4,7 @@ import android.util.Log
 import com.dinesh.ekacarenewsapp.data.local.NewsDao
 import com.dinesh.ekacarenewsapp.data.remote.NewsApi
 import com.dinesh.ekacarenewsapp.domain.model.Article
+import com.dinesh.ekacarenewsapp.domain.model.FavoriteArticle
 import com.dinesh.ekacarenewsapp.domain.model.filterValidArticles
 import com.dinesh.ekacarenewsapp.domain.repository.NewsRepository
 import com.dinesh.ekacarenewsapp.utils.Resource
@@ -44,13 +45,23 @@ class NewsRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getAllFavoriteArticles(): Flow<Resource<List<FavoriteArticle>>> = flow {
+        emit(Resource.Loading())
 
-    override suspend fun upsertArticle(article: Article) {
-        newsDao.upsert(article)
+        val localData = newsDao.getAllFavoriteArticles().firstOrNull()
+        if (!localData.isNullOrEmpty()) {
+            emit(Resource.Success(localData))
+        } else {
+            emit(Resource.Error("No data available."))
+        }
     }
 
-    override suspend fun deleteArticle(article: Article) {
-        newsDao.delete(article)
+    override suspend fun upsertFavoriteArticle(favoriteArticle: FavoriteArticle) {
+        newsDao.upsertFavoriteArticle(favoriteArticle)
+    }
+
+    override suspend fun deleteFavoriteArticle(favoriteArticle: FavoriteArticle) {
+        newsDao.deleteFavoriteArticle(favoriteArticle)
     }
 
     override fun selectArticles(): Flow<List<Article>> {

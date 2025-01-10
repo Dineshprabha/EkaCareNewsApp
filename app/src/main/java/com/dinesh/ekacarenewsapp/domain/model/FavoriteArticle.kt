@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "articles")
-data class Article(
+@Entity(tableName = "favorite_articles")
+data class FavoriteArticle(
     @PrimaryKey(autoGenerate = true)
-    override val id : Int = 0,
+    override val id: Int = 0,
     override val author: String? = null,
     override val content: String,
     override val description: String,
@@ -21,7 +21,7 @@ data class Article(
 ) : Parcelable, BaseArticle
 
 
-fun filterValidArticles(articles: List<Article>): List<Article> {
+fun filterValidArticles(articles: List<FavoriteArticle>): List<FavoriteArticle> {
     return articles.filter { article ->
         article.content != "[Removed]" &&
                 article.description != "[Removed]" &&

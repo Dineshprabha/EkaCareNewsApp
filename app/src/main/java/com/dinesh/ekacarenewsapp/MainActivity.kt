@@ -10,6 +10,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.dinesh.ekacarenewsapp.presentation.bottom_navigation.NewsBottomAppBar
+import com.dinesh.ekacarenewsapp.presentation.viewmodel.FavoriteViewModel
 import com.dinesh.ekacarenewsapp.presentation.viewmodel.NewsViewModel
 import com.dinesh.ekacarenewsapp.ui.theme.EkaCareNewsAppTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -32,8 +33,7 @@ class MainActivity : ComponentActivity() {
                     )
                 }
 
-                val newsViewModel: NewsViewModel by viewModels()
-                NewsBottomAppBar(newsViewModel = newsViewModel)
+                NewsBottomAppBar()
             }
         }
     }

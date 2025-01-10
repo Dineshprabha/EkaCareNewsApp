@@ -16,13 +16,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.dinesh.ekacarenewsapp.domain.model.Article
+import com.dinesh.ekacarenewsapp.domain.model.BaseArticle
 import com.dinesh.ekacarenewsapp.presentation.common.ArticleCard
 import com.dinesh.ekacarenewsapp.presentation.common.ArticleShimmerEffect
 import com.dinesh.ekacarenewsapp.utils.Dimens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(articles: List<Article>, isLoading: Boolean,  onReadMoreClick: (String) -> Unit) {
+fun HomeScreen(articles: List<Article>, isLoading: Boolean,  onReadMoreClick: (BaseArticle) -> Unit) {
 
     Scaffold(
         topBar = {

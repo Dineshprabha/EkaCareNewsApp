@@ -81,10 +81,10 @@ dependencies {
     implementation(libs.androidx.room.ktx)
 
     //Coil
-    implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation(libs.coil.compose)
 
     //Accompanist
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.33.2-alpha")
+    implementation(libs.accompanist.systemuicontroller)
 
     //Compose Navigation
     implementation(libs.androidx.navigation.compose)
@@ -92,4 +92,6 @@ dependencies {
 //    Dagger Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
 }

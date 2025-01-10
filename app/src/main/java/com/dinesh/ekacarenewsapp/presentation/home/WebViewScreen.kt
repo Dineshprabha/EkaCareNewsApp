@@ -11,15 +11,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.dinesh.ekacarenewsapp.domain.model.Article
+import com.dinesh.ekacarenewsapp.domain.model.BaseArticle
+import com.dinesh.ekacarenewsapp.presentation.viewmodel.FavoriteViewModel
+import com.dinesh.ekacarenewsapp.presentation.viewmodel.NewsViewModel
 
 @Composable
-fun WebViewScreen(url: String) {
+fun WebViewScreen(
+    article: BaseArticle,
+    viewModel: FavoriteViewModel
+) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-
+                    viewModel.favoriteArticle(article)
                 },
                 modifier = Modifier.padding(16.dp)
             ) {
@@ -35,7 +42,7 @@ fun WebViewScreen(url: String) {
             factory = { context ->
                 android.webkit.WebView(context).apply {
                     settings.javaScriptEnabled = true
-                    loadUrl(url)
+                    loadUrl(article.url)
                 }
             },
             modifier = Modifier
