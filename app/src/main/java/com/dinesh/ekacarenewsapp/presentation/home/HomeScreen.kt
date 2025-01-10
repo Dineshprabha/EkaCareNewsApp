@@ -17,12 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.dinesh.ekacarenewsapp.domain.model.Article
 import com.dinesh.ekacarenewsapp.presentation.common.ArticleCard
+import com.dinesh.ekacarenewsapp.presentation.common.ArticleShimmerEffect
+import com.dinesh.ekacarenewsapp.utils.Dimens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(articles: List<Article>,  onReadMoreClick: (String) -> Unit) {
+fun HomeScreen(articles: List<Article>, isLoading: Boolean,  onReadMoreClick: (String) -> Unit) {
 
-    // Main UI
     Scaffold(
         topBar = {
             TopAppBar(
@@ -30,32 +31,44 @@ fun HomeScreen(articles: List<Article>,  onReadMoreClick: (String) -> Unit) {
             )
         }
     ) {
-        if (articles.isEmpty()) {
-            // Show loading or empty state
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(it),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("No news available")
-            }
-        } else {
-            // Show news in LazyColumn
+        if (isLoading) {
             LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(it),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                contentPadding = PaddingValues(horizontal = Dimens.MediumPadding1)
             ) {
-                items(articles) { article ->
-                    ArticleCard(
-                        article = article,
-                        onReadMoreClick = onReadMoreClick
+                items(5) { // Show 5 shimmer items as a placeholder
+                    ArticleShimmerEffect(
+                        modifier = Modifier.padding(vertical = Dimens.MediumPadding1)
                     )
                 }
             }
         }
+        else{
+            if (articles.isEmpty()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(it),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("No news available")
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(it),
+                    contentPadding = PaddingValues(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(articles) { article ->
+                        ArticleCard(
+                            article = article,
+                            onReadMoreClick = onReadMoreClick
+                        )
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -22,6 +22,9 @@ class NewsViewModel @Inject constructor(
     private val _newsState = MutableStateFlow<List<Article>>(emptyList())
     val newsState = _newsState.asStateFlow()
 
+    private val _isLoading = MutableStateFlow(true) // To track loading state
+    val isLoading = _isLoading.asStateFlow()
+
     init {
         fetchNews()
     }
@@ -30,7 +33,8 @@ class NewsViewModel @Inject constructor(
         viewModelScope.launch {
             newsRepository.getAllNews().collectLatest { result ->
                 when (result) {
-                    is Resource.Error -> {
+                    is Resource.Loading -> {
+                        _isLoading.value = true
                     }
 
                     is Resource.Success -> {
@@ -38,10 +42,11 @@ class NewsViewModel @Inject constructor(
                             val validArticles = filterValidArticles(articles)
                             _newsState.update { validArticles }
                         }
+                        _isLoading.value = false
                     }
 
-                    is Resource.Loading -> {
-
+                    is Resource.Error -> {
+                        _isLoading.value = false
                     }
 
                     else -> Unit

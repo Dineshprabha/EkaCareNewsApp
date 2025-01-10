@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
@@ -78,7 +79,7 @@ fun NewsBottomAppBar(modifier: Modifier = Modifier, newsViewModel: NewsViewModel
                         imageVector = Icons.Default.Favorite,
                         contentDescription = null,
                         modifier = Modifier.size(26.dp),
-                        tint = if (selected.value == Icons.Default.Search) Color.White else Color.Gray
+                        tint = if (selected.value == Icons.Default.Favorite) Color.White else Color.Gray
                     )
                 }
 
@@ -91,8 +92,8 @@ fun NewsBottomAppBar(modifier: Modifier = Modifier, newsViewModel: NewsViewModel
         ) {
             composable(Screens.Home.screens) {
                 val newsList by newsViewModel.newsState.collectAsState()
-                Log.i("TAG", Gson().toJson(newsList))
-                HomeScreen(articles = newsList) { url ->
+                val isLoading by newsViewModel.isLoading.collectAsState()
+                HomeScreen(articles = newsList, isLoading) { url ->
                     navigationController.navigate("webview?url=${Uri.encode(url)}")
                 }
             }

@@ -14,9 +14,6 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsApi: NewsApi
 ) : NewsRepository {
 
-    override fun getNews() {
-        TODO("Not yet implemented")
-    }
 
     override fun getAllNews(): Flow<Resource<List<Article>>> {
        return flow {
