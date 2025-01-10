@@ -12,7 +12,11 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -38,51 +42,58 @@ import com.google.gson.Gson
 fun NewsBottomAppBar(modifier: Modifier = Modifier, newsViewModel: NewsViewModel) {
 
     val navigationController = rememberNavController()
-    val context = LocalContext.current.applicationContext
-    val selected = remember {
-        mutableStateOf(Icons.Filled.Home)
-    }
+    val selectedItem = remember { mutableStateOf(Screens.Home.screens) }
 
     Scaffold(
         bottomBar = {
-            BottomAppBar(
-                containerColor = Purple80
-            ) {
-                IconButton(
-                    modifier = Modifier.weight(1f),
+            NavigationBar(containerColor = Purple80) {
+                NavigationBarItem(
+                    selected = selectedItem.value == Screens.Home.screens,
                     onClick = {
-                        selected.value = Icons.Default.Home
+                        selectedItem.value = Screens.Home.screens
                         navigationController.navigate(Screens.Home.screens) {
                             popUpTo(Screens.Home.screens) { inclusive = true }
                         }
-                    }
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Home,
-                        contentDescription = null,
-                        modifier = Modifier.size(26.dp),
-                        tint = if (selected.value == Icons.Default.Home) Color.White else Color.Gray
+                    },
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Default.Home,
+                            contentDescription = "Home",
+                            modifier = Modifier.size(26.dp)
+                        )
+                    },
+                    label = { Text(text = "Home") },
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = Color.White,
+                        unselectedIconColor = Color.Gray,
+                        selectedTextColor = Color.White,
+                        unselectedTextColor = Color.Gray
                     )
+                )
 
-                }
-
-                IconButton(
+                NavigationBarItem(
+                    selected = selectedItem.value == Screens.Favorite.screens,
                     onClick = {
-                        selected.value = Icons.Default.Favorite
+                        selectedItem.value = Screens.Favorite.screens
                         navigationController.navigate(Screens.Favorite.screens) {
-                            popUpTo(Screens.Home.screens)
+                            popUpTo(Screens.Home.screens) { inclusive = false }
                         }
                     },
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Favorite,
-                        contentDescription = null,
-                        modifier = Modifier.size(26.dp),
-                        tint = if (selected.value == Icons.Default.Favorite) Color.White else Color.Gray
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Default.Favorite,
+                            contentDescription = "Favorite",
+                            modifier = Modifier.size(26.dp)
+                        )
+                    },
+                    label = { Text(text = "Favorite") },
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = Color.White,
+                        unselectedIconColor = Color.Gray,
+                        selectedTextColor = Color.White,
+                        unselectedTextColor = Color.Gray
                     )
-                }
-
+                )
             }
         }
     ) { paddingValues ->
