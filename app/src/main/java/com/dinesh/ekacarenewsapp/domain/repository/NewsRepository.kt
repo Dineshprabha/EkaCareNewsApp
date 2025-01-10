@@ -8,4 +8,9 @@ interface NewsRepository {
 
     fun getAllNews() : Flow<Resource<List<Article>>>
 
+    suspend fun upsertArticle(article: Article)
+    suspend fun deleteArticle(article: Article)
+    fun selectArticles(): Flow<List<Article>>
+    suspend fun selectArticle(url : String) : Article?
+
 }

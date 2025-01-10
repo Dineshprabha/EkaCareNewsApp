@@ -1,9 +1,15 @@
 package com.dinesh.ekacarenewsapp.di
 
+import android.app.Application
+import androidx.room.Room
+import com.dinesh.ekacarenewsapp.data.local.NewsDao
+import com.dinesh.ekacarenewsapp.data.local.NewsDatabase
+import com.dinesh.ekacarenewsapp.data.local.NewsTypeConverter
 import com.dinesh.ekacarenewsapp.data.remote.NewsApi
 import com.dinesh.ekacarenewsapp.data.repository.NewsRepositoryImpl
 import com.dinesh.ekacarenewsapp.domain.repository.NewsRepository
 import com.dinesh.ekacarenewsapp.utils.Constants.BASE_URL
+import com.dinesh.ekacarenewsapp.utils.Constants.NEWS_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,8 +38,28 @@ object DataModule {
     }
 
     @Provides
-    fun provideNewsRepository(newsApi: NewsApi): NewsRepository {
-        return NewsRepositoryImpl(newsApi)
+    fun provideNewsRepository(newsApi: NewsApi, newsDao: NewsDao): NewsRepository {
+        return NewsRepositoryImpl(newsApi, newsDao)
     }
+
+    @Provides
+    @Singleton
+    fun provideNewsDatabase(
+        application: Application
+    ): NewsDatabase {
+        return Room.databaseBuilder(
+            context = application,
+            klass = NewsDatabase::class.java,
+            name = NEWS_DATABASE_NAME
+        ).addTypeConverter(NewsTypeConverter())
+            .fallbackToDestructiveMigration().build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDatabase: NewsDatabase
+    ): NewsDao = newsDatabase.newsDao
+
 
 }

@@ -42,6 +42,7 @@ import com.google.gson.Gson
 fun NewsBottomAppBar(modifier: Modifier = Modifier, newsViewModel: NewsViewModel) {
 
     val navigationController = rememberNavController()
+    val context = LocalContext.current.applicationContext
     val selectedItem = remember { mutableStateOf(Screens.Home.screens) }
 
     Scaffold(
