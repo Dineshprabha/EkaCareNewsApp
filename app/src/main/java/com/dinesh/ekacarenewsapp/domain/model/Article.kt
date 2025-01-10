@@ -15,5 +15,17 @@ data class Article(
     val source: Source,
     val title: String,
     @PrimaryKey val url: String,
-    val urlToImage: String
-): Parcelable
+    val urlToImage: String,
+) : Parcelable
+
+
+fun filterValidArticles(articles: List<Article>): List<Article> {
+    return articles.filter { article ->
+        article.content != "[Removed]" &&
+                article.description != "[Removed]" &&
+                article.title != "[Removed]" &&
+                !article.content.isNullOrBlank() &&
+                !article.description.isNullOrBlank() &&
+                !article.title.isNullOrBlank()
+    }
+}

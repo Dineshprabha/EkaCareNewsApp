@@ -41,6 +41,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -78,6 +79,9 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
     //Compose Navigation
     implementation(libs.androidx.navigation.compose)
