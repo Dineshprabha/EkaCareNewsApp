@@ -133,6 +133,60 @@ Ensure you have the following installed:
 
 ---
 
+## The Complete Project Folder Structure
+
+```
+|── EkaCareNewsApplication.kt
+├── data
+│   ├── local
+│   │   ├── NewsDao.kt
+│   │   ├── NewsDatabase.kt
+│   │   ├── NewsTypeConverter.kt
+│   ├── remote
+│   │   ├── dto
+	     ├── CommonUI.kt
+│   │   ├── NewsApi.kt
+├── di
+│   ├── module
+│   │   └── ApplicationModule.kt
+│   └── qualifiers.kt
+├── ui
+│   ├── NewsActivity.kt
+│   ├── base
+│   │   ├── CommonUI.kt
+│   │   ├── NewsDestination.kt
+│   │   ├── NewsNavigation.kt
+│   │   └── UIState.kt
+│   ├── components
+│   │   ├── Article.kt
+│   │   ├── FilterItem.kt
+│   │   ├── FilterItemListLayout.kt
+│   │   └── NewsListLayout.kt
+│   ├── paging
+│   │   └── NewsPagingSource.kt
+│   ├── screens
+│   │   ├── ArticleScreen.kt
+│   │   ├── FilterScreen.kt
+│   │   ├── NewsScreen.kt
+│   │   ├── SavedScreen.kt
+│   │   └── SearchScreen.kt
+│   ├── theme
+│   │   ├── Color.kt
+│   │   ├── Theme.kt
+│   │   └── Type.kt
+│   └── viewmodels
+│       ├── NewsViewModel.kt
+│       ├── SearchViewModel.kt
+│       ├── SharedViewModel.kt
+│       └── filters
+│           ├── CountryFilterViewModel.kt
+│           ├── LanguageFilterViewModel.kt
+│           └── SourceFilterViewModel.kt
+└── worker
+    └── NewsWorker.kt
+
+---
+
 ## Contribution
 Contributions are welcome! Please open an issue or submit a pull request for any improvements.
 
