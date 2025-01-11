@@ -18,54 +18,47 @@ This project demonstrates the use of modern Android development best practices, 
 ### Retrofit
 - **Dependency**:
   ```
-  implementation(libs.retrofit)
-  implementation(libs.converter.gson)
+  implementation("com.squareup.retrofit2:retrofit:2.11.0")
+  implementation("com.squareup.retrofit2:converter-gson:2.11.0")
   ```
 - **Purpose**: Used for making HTTP requests to RESTful APIs and handling JSON serialization/deserialization using Gson.
 
 ### Room
 - **Dependency**:
   ```
-  implementation(libs.androidx.room.runtime)
-  kapt(libs.androidx.room.compiler)
-  implementation(libs.androidx.room.ktx)
+  implementation("androidx.room:room-runtime:2.6.1")
+  kapt("androidx.room:room-compiler:2.6.1")
+  implementation("androidx.room:room-ktx:2.6.1")
   ```
 - **Purpose**: Provides an abstraction layer over SQLite to allow fluent database access while following the MVVM pattern.
 
 ### Coil
 - **Dependency**:
   ```
-  implementation(libs.coil.compose)
+  implementation("io.coil-kt:coil-compose:2.5.0")
   ```
 - **Purpose**: Image loading library optimized for Jetpack Compose. Efficiently loads images from the network or local resources.
 
 ### Accompanist
 - **Dependency**:
   ```
-  implementation(libs.accompanist.systemuicontroller)
+  implementation("com.google.accompanist:accompanist-systemuicontroller:0.33.2-alpha")
   ```
 - **Purpose**: Utility library for Compose. In this project, it is used for managing system UI components like the status bar and navigation bar colors.
 
 ### Compose Navigation
 - **Dependency**:
   ```
-  implementation(libs.androidx.navigation.compose)
+  implementation("androidx.navigation:navigation-compose:2.7.6")
   ```
 - **Purpose**: Enables navigation between composable screens in a type-safe and declarative way.
-
-### Splash API
-- **Dependency**:
-  ```
-  implementation(libs.androidx.core.splashscreen)
-  ```
-- **Purpose**: Provides APIs to implement a splash screen that complies with modern Android guidelines.
 
 ### Dagger Hilt
 - **Dependency**:
   ```
-  implementation(libs.hilt.android)
-  kapt(libs.hilt.compiler)
-  implementation(libs.androidx.hilt.navigation.compose)
+  implementation("com.google.dagger:hilt-android:2.50")
+  kapt("com.google.dagger:hilt-compiler:2.50")
+  implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
   ```
 - **Purpose**: Simplifies dependency injection in Android applications. Integrated with ViewModels and Compose.
 
