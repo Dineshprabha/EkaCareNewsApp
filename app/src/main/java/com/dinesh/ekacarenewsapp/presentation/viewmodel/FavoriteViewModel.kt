@@ -26,8 +26,8 @@ class FavoriteViewModel @Inject constructor(
     private val _favoriteArticlesState = MutableStateFlow<List<FavoriteArticle>>(emptyList())
     val favoriteArticlesState = _favoriteArticlesState.asStateFlow()
 
-    private val _bookmarkOperationState = MutableStateFlow<Resource<Unit>?>(null)
-    val bookmarkOperationState = _bookmarkOperationState.asStateFlow()
+    private val _favoriteOperationState = MutableStateFlow<Resource<Unit>?>(null)
+    val favoriteOperationState = _favoriteOperationState.asStateFlow()
 
     init {
         fetchFavoriteArticles()
@@ -72,22 +72,32 @@ class FavoriteViewModel @Inject constructor(
                     urlToImage = article.urlToImage
                 )
                 newsRepository.upsertFavoriteArticle(favoriteArticle)
-                _bookmarkOperationState.update { Resource.Success(Unit) }
+                _favoriteOperationState.update { Resource.Success(Unit) }
                 fetchFavoriteArticles()
             } catch (e: Exception) {
-                _bookmarkOperationState.update { Resource.Error("Failed to save article") }
+                _favoriteOperationState.update { Resource.Error("Failed to save article") }
             }
         }
     }
 
-    fun removeFavoriteArticle(favoriteArticle: FavoriteArticle) {
+    fun removeFavoriteArticle(article: BaseArticle) {
         viewModelScope.launch {
             try {
+                val favoriteArticle = FavoriteArticle(
+                    author = article.author,
+                    content = article.content,
+                    description = article.description,
+                    publishedAt = article.publishedAt,
+                    source = article.source,
+                    title = article.title,
+                    url = article.url,
+                    urlToImage = article.urlToImage
+                )
                 newsRepository.deleteFavoriteArticle(favoriteArticle)
-                _bookmarkOperationState.update { Resource.Success(Unit) }
+                _favoriteOperationState.update { Resource.Success(Unit) }
                 fetchFavoriteArticles()
             } catch (e: Exception) {
-                _bookmarkOperationState.update { Resource.Error("Failed to remove article") }
+                _favoriteOperationState.update { Resource.Error("Failed to remove article") }
             }
         }
     }
