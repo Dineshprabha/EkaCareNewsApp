@@ -137,53 +137,47 @@ Ensure you have the following installed:
 
 ```
 |── EkaCareNewsApplication.kt
+|── MainActivity.kt
 ├── data
 │   ├── local
 │   │   ├── NewsDao.kt
 │   │   ├── NewsDatabase.kt
-│   │   ├── NewsTypeConverter.kt
+│   │   └── NewsTypeConverter.kt
 │   ├── remote
 │   │   ├── dto
-	     ├── CommonUI.kt
-│   │   ├── NewsApi.kt
+│   │   │     └── NewsResponse.kt
+│   │   └── NewsApi.kt
 ├── di
-│   ├── module
-│   │   └── ApplicationModule.kt
-│   └── qualifiers.kt
-├── ui
-│   ├── NewsActivity.kt
-│   ├── base
-│   │   ├── CommonUI.kt
-│   │   ├── NewsDestination.kt
-│   │   ├── NewsNavigation.kt
-│   │   └── UIState.kt
-│   ├── components
+│   └── module
+│       └── DataModule.kt
+│   
+├── domain
+│   ├── model
 │   │   ├── Article.kt
-│   │   ├── FilterItem.kt
-│   │   ├── FilterItemListLayout.kt
-│   │   └── NewsListLayout.kt
-│   ├── paging
-│   │   └── NewsPagingSource.kt
-│   ├── screens
-│   │   ├── ArticleScreen.kt
-│   │   ├── FilterScreen.kt
-│   │   ├── NewsScreen.kt
-│   │   ├── SavedScreen.kt
-│   │   └── SearchScreen.kt
-│   ├── theme
-│   │   ├── Color.kt
-│   │   ├── Theme.kt
-│   │   └── Type.kt
-│   └── viewmodels
-│       ├── NewsViewModel.kt
-│       ├── SearchViewModel.kt
-│       ├── SharedViewModel.kt
-│       └── filters
-│           ├── CountryFilterViewModel.kt
-│           ├── LanguageFilterViewModel.kt
-│           └── SourceFilterViewModel.kt
-└── worker
-    └── NewsWorker.kt
+│   │   ├── BaseArticle.kt
+│   │   ├── FavoriteArticle.kt
+│   │   └── Source.kt
+│   └── repository
+│   	└── NewsRepository.kt
+│
+├── presentation
+│   ├── bottom_navigation
+│   │   ├── NewsBottomAppBar.kt
+│   │   └── Screens.kt
+│   ├── common
+│   │   ├── ArticleCard.kt
+│   │   └── ArticleShimmerEffect.kt
+│   ├── home
+│   │   ├── FavoriteScreen.kt
+│   │   ├── HomeSCreen.kt
+│   │   └── WebViewScreen.kt
+│   └── viewmodel
+│       ├── FavoriteViewModel.kt
+│       └── NewsViewModel.kt
+└── utils
+    ├── Constants
+    ├── Dimens
+    └── Resources.kt
 
 ---
 
