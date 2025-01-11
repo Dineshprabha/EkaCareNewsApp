@@ -2,6 +2,10 @@
 
 This project demonstrates the use of modern Android development best practices, leveraging Jetpack Compose, MVVM architecture, and several powerful libraries. The project follows a modular structure with clean separation of concerns into `data`, `domain`, and `presentation` layers.
 
+<p align="center">
+<img alt="mvvm-architecture"  src="https://github.com/Dineshprabha/EkaCareNewsApp/app/src/main/assets/EkaCareNewsAppArchitecture.png">
+</p>
+
 ---
 
 ## Table of Contents
