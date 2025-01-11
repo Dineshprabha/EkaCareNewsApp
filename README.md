@@ -114,7 +114,7 @@ Ensure you have the following installed:
 ### Steps to Run
 1. Clone the repository:
    ```bash
-   [git clone https://github.com/yourusername/your-repository.git](https://github.com/Dineshprabha/EkaCareNewsApp.git)
+   https://github.com/Dineshprabha/EkaCareNewsApp.git
    ```
 2. Open the project in Android Studio.
 3. Sync the project to download dependencies.
